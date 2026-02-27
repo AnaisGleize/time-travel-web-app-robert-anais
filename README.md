@@ -1,5 +1,6 @@
 # 🌌 TimeTravel Agency --- Webapp Interactive
 
+
 Webapp immersive et interactive pour une agence fictive de voyages
 temporels.\
 Projet pédagogique combinant design narratif, expérience utilisateur
@@ -8,6 +9,7 @@ premium et intégration d'IA générative.
 ------------------------------------------------------------------------
 
 ## 🎯 Objectif du Projet
+
 
 Créer une webapp moderne et immersive permettant de :
 
@@ -27,7 +29,6 @@ Créer une webapp moderne et immersive permettant de :
 -   v0.dev (génération UI assistée par IA)
 
 ------------------------------------------------------------------------
-
 ## ✨ Features Implémentées
 
 ### 🏠 Landing Page Immersive
@@ -47,6 +48,7 @@ Créer une webapp moderne et immersive permettant de :
 -   Galerie vidéo interactive
 -   Lecteur intégré
 -   Expérience immersive par époque
+
 
 ### 🤖 Chatbot IA
 
@@ -106,6 +108,7 @@ Application déployée via Vercel avec déploiement automatique connecté au
 repository GitHub.
 
 ------------------------------------------------------------------------
+
 
 ## 🎨 Crédits
 
