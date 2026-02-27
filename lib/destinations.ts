@@ -26,7 +26,7 @@ export const destinations: Destination[] = [
       "Rencontre privee avec les plus grands inventeurs du XIXe siecle",
     ],
     image: "/images/paris-1889.jpg",
-    videoUrl: "/videos/pcf.mp4",
+    videoUrl: "/videos/paris-cetace-florence.mp4",
     activities: [
       "Visite privee de l'Exposition universelle",
       "Diner gastronomique Belle Epoque",
@@ -69,7 +69,7 @@ export const destinations: Destination[] = [
       "Collecte de fossiles vivants et echantillons geologiques uniques",
     ],
     image: "/images/cretaceous.jpg",
-    videoUrl: "/videos/pcf.mp4",
+    videoUrl: "/videos/paris-cetace-florence.mp4",
     activities: [
       "Observation securisee des T-Rex",
       "Safari en vehicule blinde",
@@ -112,7 +112,7 @@ export const destinations: Destination[] = [
       "Banquet exclusif au Palazzo Medici avec la famille la plus puissante d'Italie",
     ],
     image: "/images/florence-1504.jpg",
-    videoUrl: "/videos/pcf.mp4",
+    videoUrl: "/videos/paris-cetace-florence.mp4",
     activities: [
       "Visite de l'atelier de Michel-Ange",
       "Cours de peinture avec un maitre de la Renaissance",
