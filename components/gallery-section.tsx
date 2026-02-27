@@ -63,45 +63,58 @@ export function GallerySection() {
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {entries.map((entry) => (
-            <div
-              key={entry.id}
-              className={`group relative ${entry.isGroup ? "md:col-span-2" : ""}`}
-            >
-              <div
-                className={`relative overflow-hidden border border-border rounded-lg ${
-                  entry.isGroup ? "aspect-[21/9]" : "aspect-video"
-                }`}
-              >
-                {/* Thumbnail(s) */}
-                {entry.isGroup ? (
-                  <div className="absolute inset-0 grid grid-cols-3">
-                    {groupedDests.map((d) => (
-                      <div key={d.id} className="relative h-full w-full">
-                        <Image
-                          src={d.image}
-                          alt={d.title}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    ))}
-                    <div className="absolute inset-0 bg-background/40 transition-all duration-300 group-hover:bg-background/20" />
-                  </div>
-                ) : (
-                  <>
+        {/* Grouped: Paris / Cretace / Florence */}
+        <div className="mb-8">
+          <div className="group relative">
+            <div className="relative overflow-hidden border border-border rounded-lg aspect-[21/9]">
+              <div className="absolute inset-0 grid grid-cols-3">
+                {groupedDests.map((d) => (
+                  <div key={d.id} className="relative h-full w-full">
                     <Image
-                      src={entry.image}
-                      alt={`Video de ${entry.title}`}
+                      src={d.image}
+                      alt={d.title}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-background/40 transition-all duration-300 group-hover:bg-background/20" />
-                  </>
-                )}
+                  </div>
+                ))}
+              </div>
+              <div className="absolute inset-0 bg-background/40 transition-all duration-300 group-hover:bg-background/20" />
 
-                {/* Play button overlay */}
+              <button
+                onClick={() => setActiveEntry(entries[0])}
+                className="absolute inset-0 flex flex-col items-center justify-center gap-3"
+                aria-label="Lire la video de Paris, Cretace et Florence"
+              >
+                <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-primary/80 bg-primary/10 text-primary backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20">
+                  <Play size={24} className="ml-1" />
+                </div>
+                <div className="text-center">
+                  <p className="font-serif text-lg text-foreground drop-shadow-lg">
+                    Paris / Cretace / Florence
+                  </p>
+                  <p className="text-xs tracking-wider uppercase text-primary drop-shadow-md">
+                    Trois epoques, une seule aventure
+                  </p>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Individual: Japon, Egypte, New York */}
+        <div className="grid gap-6 md:grid-cols-3">
+          {entries.filter((e) => !e.isGroup).map((entry) => (
+            <div key={entry.id} className="group relative">
+              <div className="relative overflow-hidden border border-border rounded-lg aspect-video">
+                <Image
+                  src={entry.image}
+                  alt={`Video de ${entry.title}`}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-background/40 transition-all duration-300 group-hover:bg-background/20" />
+
                 <button
                   onClick={() => setActiveEntry(entry)}
                   className="absolute inset-0 flex flex-col items-center justify-center gap-3"
