@@ -26,7 +26,7 @@ function buildGalleryEntries(): GalleryEntry[] {
     title: "Paris / Cretace / Florence",
     subtitle: "Trois epoques, une seule aventure",
     image: grouped[0]?.image ?? "/images/paris-1889.jpg",
-    videoUrl: "/videos/pcf.mp4",
+    videoUrl: "/videos/paris-cetace-florence.mp4",
     isGroup: true,
   }
 
@@ -174,12 +174,16 @@ export function GallerySection() {
 function Mp4Player({ src, title }: { src: string; title: string }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(true)
-  const [muted, setMuted] = useState(false)
+  const [muted, setMuted] = useState(true)
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
-    videoRef.current?.play().catch(() => {
-      /* autoplay blocked */
+    const v = videoRef.current
+    if (!v) return
+    v.muted = true
+    v.load()
+    v.play().catch(() => {
+      setPlaying(false)
     })
   }, [src])
 
@@ -223,8 +227,10 @@ function Mp4Player({ src, title }: { src: string; title: string }) {
         src={src}
         className="absolute inset-0 h-full w-full object-cover"
         autoPlay
+        muted
         loop
         playsInline
+        preload="auto"
         onTimeUpdate={handleTimeUpdate}
         aria-label={`Video de ${title}`}
       />
