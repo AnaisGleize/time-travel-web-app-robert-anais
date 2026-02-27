@@ -1,11 +1,11 @@
-🌌 TimeTravel Agency — Webapp Interactive
+🌌 # TimeTravel Agency — Webapp Interactive
 
 Webapp immersive et interactive pour une agence fictive de voyages temporels.
 Projet pédagogique combinant design narratif, expérience utilisateur premium et intégration d’IA générative.
 
 L’utilisateur peut explorer différentes époques, visionner des contenus immersifs (photos & vidéos), interagir avec un chatbot intelligent et effectuer une demande de réservation.
 
-🎯 Objectif du Projet
+🎯 # Objectif du Projet
 
 Créer une webapp moderne et immersive permettant de :
 
@@ -19,7 +19,7 @@ Simuler une réservation de voyage temporel
 
 Projet réalisé dans un cadre académique (Digital & IA).
 
-🛠️ Stack Technique
+🛠️ # Stack Technique
 
 Next.js (React + TypeScript)
 
@@ -31,7 +31,7 @@ Vercel (hébergement & déploiement)
 
 v0.dev (génération UI assistée par IA)
 
-✨ Features Implémentées
+✨ # Features Implémentées
 🏠 1. Landing Page Immersive
 
 Hero section immersive
@@ -80,7 +80,7 @@ Durée du séjour
 
 Validation front-end et expérience fluide.
 
-🤖 Outils IA Utilisés (Transparence)
+🤖 # Outils IA Utilisés (Transparence)
 
 Dans une démarche pédagogique et éthique, voici les outils IA utilisés :
 
