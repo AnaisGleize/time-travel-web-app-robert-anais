@@ -1,95 +1,128 @@
-🌌 # TimeTravel Agency — Webapp Interactive
+# 🌌 TimeTravel Agency --- Webapp Interactive
 
-Webapp immersive et interactive pour une agence fictive de voyages temporels.
-Projet pédagogique combinant design narratif, expérience utilisateur premium et intégration d’IA générative.
 
-L’utilisateur peut explorer différentes époques, visionner des contenus immersifs (photos & vidéos), interagir avec un chatbot intelligent et effectuer une demande de réservation.
+Webapp immersive et interactive pour une agence fictive de voyages
+temporels.\
+Projet pédagogique combinant design narratif, expérience utilisateur
+premium et intégration d'IA générative.
 
-🎯 # Objectif du Projet
+------------------------------------------------------------------------
+
+## 🎯 Objectif du Projet
+
 
 Créer une webapp moderne et immersive permettant de :
 
-Découvrir des destinations temporelles iconiques
+-   Découvrir des destinations temporelles iconiques\
+-   Vivre une expérience interactive premium\
+-   Être guidé par un chatbot IA\
+-   Simuler une réservation de voyage temporel
 
-Vivre une expérience interactive premium
+------------------------------------------------------------------------
 
-Être guidé par un chatbot IA
+## 🛠️ Stack Technique
 
-Simuler une réservation de voyage temporel
+-   Next.js (React + TypeScript)
+-   Tailwind CSS
+-   Framer Motion
+-   Vercel (hébergement & déploiement)
+-   v0.dev (génération UI assistée par IA)
 
-Projet réalisé dans un cadre académique (Digital & IA).
+------------------------------------------------------------------------
+## ✨ Features Implémentées
 
-🛠️ # Stack Technique
+### 🏠 Landing Page Immersive
 
-Next.js (React + TypeScript)
+-   Hero section immersive
+-   Call-to-action vers les destinations
+-   Design premium & responsive
 
-Tailwind CSS
+### 🖼️ Page Photo
 
-Framer Motion (animations)
+-   Galerie immersive d'images
+-   Mise en scène narrative des époques
+-   Optimisation responsive
 
-Vercel (hébergement & déploiement)
+### 🎬 Page Gallery (Vidéos)
 
-v0.dev (génération UI assistée par IA)
+-   Galerie vidéo interactive
+-   Lecteur intégré
+-   Expérience immersive par époque
 
-✨ # Features Implémentées
-🏠 1. Landing Page Immersive
 
-Hero section immersive
+### 🤖 Chatbot IA
 
-Call-to-action vers les destinations
+-   Interface conversationnelle intégrée
+-   Orientation utilisateur selon préférences
+-   Simulation d'accompagnement personnalisé
 
-Design premium & responsive
+### 📝 Page Réservation
 
-🖼️ 2. Page Photo
-
-Galerie immersive d’images
-
-Mise en scène narrative des époques
-
-Optimisation responsive
-
-🎬 3. Page Gallery (Vidéos)
-
-Galerie vidéo interactive
-
-Lecteur intégré
-
-Expérience immersive par époque
-
-🤖 4. Chatbot IA
-
-Interface conversationnelle intégrée
-
-Orientation utilisateur selon préférences
-
-Simulation d’accompagnement personnalisé
-
-📝 5. Page Réservation
-
-Formulaire comprenant :
-
-Nom
-
-Prénom
-
-Adresse email
-
-Nombre de personnes
-
-Durée du séjour
+Formulaire comprenant : - Nom - Prénom - Adresse email - Nombre de
+personnes - Durée du séjour
 
 Validation front-end et expérience fluide.
 
-🤖 # Outils IA Utilisés (Transparence)
+------------------------------------------------------------------------
 
-Dans une démarche pédagogique et éthique, voici les outils IA utilisés :
+## 🤖 Outils IA Utilisés (Transparence)
 
-UI & Structure Front-end : v0.dev
+-   UI & Structure Front-end : v0.dev\
+-   Assistance code & rédaction : ChatGPT\
+-   Structuration produit & UX : IA générative\
+-   Déploiement : Vercel
 
-Assistance code & rédaction : ChatGPT
+Les IA ont été utilisées comme assistant de développement. La validation
+et les ajustements restent sous contrôle humain.
 
-Structuration produit & UX : IA générative (support à la conception)
+------------------------------------------------------------------------
 
-Déploiement : Vercel
+## 🚀 Installation
 
-Les IA ont été utilisées comme assistant de développement, la validation, les ajustements et la logique fonctionnelle restant sous contrôle humain.
+### 1️⃣ Cloner le repository
+
+``` bash
+git clone https://github.com/AnaisGleize/time-travel-web-app-robert-anais.git
+cd timetravel-agency
+```
+
+### 2️⃣ Installer les dépendances
+
+``` bash
+npm install
+```
+
+### 3️⃣ Lancer en local
+
+``` bash
+npm run dev
+```
+
+Application accessible sur : https://v0-timetravel-gleize-anais-melveen-robert.vercel.app/
+
+------------------------------------------------------------------------
+
+## 🌍 Déploiement
+
+Application déployée via Vercel avec déploiement automatique connecté au
+repository GitHub.
+
+------------------------------------------------------------------------
+
+
+## 🎨 Crédits
+
+Framework : Next.js\
+Hébergement : Vercel\
+Outils IA : v0.dev & ChatGPT\
+Assets visuels : Projet génératif pédagogique
+
+------------------------------------------------------------------------
+
+## 📄 Licence
+
+Projet pédagogique\
+M2 Expert Cloud Sécurité & Infrastructure\
+Usage académique uniquement.
+
+Authors : GLEIZE Anaïs, MELVEEN Robert, ChatGPT
