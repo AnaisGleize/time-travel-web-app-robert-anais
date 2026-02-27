@@ -5,16 +5,48 @@ import { destinations } from "@/lib/destinations"
 import { Play, X, Pause, Volume2, VolumeX } from "lucide-react"
 import Image from "next/image"
 
-function isYouTube(url: string) {
-  return url.includes("youtube.com") || url.includes("youtu.be")
+const GROUPED_IDS = ["paris-1889", "cretaceous", "florence-1504"]
+const INDIVIDUAL_IDS = ["japan-feudal", "egypt-ancient", "newyork-1920"]
+
+interface GalleryEntry {
+  id: string
+  title: string
+  subtitle: string
+  image: string
+  videoUrl: string
+  isGroup?: boolean
+}
+
+function buildGalleryEntries(): GalleryEntry[] {
+  const grouped = destinations.filter((d) => GROUPED_IDS.includes(d.id))
+  const individuals = destinations.filter((d) => INDIVIDUAL_IDS.includes(d.id))
+
+  const groupEntry: GalleryEntry = {
+    id: "pcf-group",
+    title: "Paris / Cretace / Florence",
+    subtitle: "Trois epoques, une seule aventure",
+    image: grouped[0]?.image ?? "/images/paris-1889.jpg",
+    videoUrl: "/videos/pcf.mp4",
+    isGroup: true,
+  }
+
+  return [
+    groupEntry,
+    ...individuals.map((d) => ({
+      id: d.id,
+      title: d.title,
+      subtitle: d.subtitle,
+      image: d.image,
+      videoUrl: d.videoUrl,
+    })),
+  ]
 }
 
 export function GallerySection() {
-  const [activeVideo, setActiveVideo] = useState<string | null>(null)
+  const [activeEntry, setActiveEntry] = useState<GalleryEntry | null>(null)
+  const entries = buildGalleryEntries()
 
-  const activeDest = activeVideo
-    ? destinations.find((d) => d.id === activeVideo)
-    : null
+  const groupedDests = destinations.filter((d) => GROUPED_IDS.includes(d.id))
 
   return (
     <section id="gallery" className="relative bg-background py-24 md:py-32">
@@ -31,32 +63,59 @@ export function GallerySection() {
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {destinations.map((dest) => (
-            <div key={dest.id} className="group relative">
-              <div className="relative aspect-video overflow-hidden border border-border">
-                <Image
-                  src={dest.image}
-                  alt={`Video de ${dest.title}`}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-background/50 transition-all duration-300 group-hover:bg-background/30" />
+        <div className="grid gap-6 md:grid-cols-2">
+          {entries.map((entry) => (
+            <div
+              key={entry.id}
+              className={`group relative ${entry.isGroup ? "md:col-span-2" : ""}`}
+            >
+              <div
+                className={`relative overflow-hidden border border-border rounded-lg ${
+                  entry.isGroup ? "aspect-[21/9]" : "aspect-video"
+                }`}
+              >
+                {/* Thumbnail(s) */}
+                {entry.isGroup ? (
+                  <div className="absolute inset-0 grid grid-cols-3">
+                    {groupedDests.map((d) => (
+                      <div key={d.id} className="relative h-full w-full">
+                        <Image
+                          src={d.image}
+                          alt={d.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    ))}
+                    <div className="absolute inset-0 bg-background/40 transition-all duration-300 group-hover:bg-background/20" />
+                  </div>
+                ) : (
+                  <>
+                    <Image
+                      src={entry.image}
+                      alt={`Video de ${entry.title}`}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-background/40 transition-all duration-300 group-hover:bg-background/20" />
+                  </>
+                )}
 
+                {/* Play button overlay */}
                 <button
-                  onClick={() => setActiveVideo(dest.id)}
+                  onClick={() => setActiveEntry(entry)}
                   className="absolute inset-0 flex flex-col items-center justify-center gap-3"
-                  aria-label={`Lire la video de ${dest.title}`}
+                  aria-label={`Lire la video de ${entry.title}`}
                 >
                   <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-primary/80 bg-primary/10 text-primary backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20">
                     <Play size={24} className="ml-1" />
                   </div>
                   <div className="text-center">
-                    <p className="font-serif text-lg text-foreground">
-                      {dest.title}
+                    <p className="font-serif text-lg text-foreground drop-shadow-lg">
+                      {entry.title}
                     </p>
-                    <p className="text-xs tracking-wider uppercase text-primary">
-                      {dest.subtitle}
+                    <p className="text-xs tracking-wider uppercase text-primary drop-shadow-md">
+                      {entry.subtitle}
                     </p>
                   </div>
                 </button>
@@ -66,36 +125,26 @@ export function GallerySection() {
         </div>
       </div>
 
-      {/* Video overlay */}
-      {activeVideo && activeDest && (
+      {/* Video overlay modal */}
+      {activeEntry && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 backdrop-blur-md animate-in fade-in duration-300">
           <button
-            onClick={() => setActiveVideo(null)}
+            onClick={() => setActiveEntry(null)}
             className="absolute right-6 top-6 z-10 text-foreground/70 transition-colors hover:text-primary"
             aria-label="Fermer la video"
           >
             <X size={32} />
           </button>
-          <div className="relative w-full max-w-4xl px-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="relative aspect-video w-full overflow-hidden border border-border bg-card">
-              {isYouTube(activeDest.videoUrl) ? (
-                <iframe
-                  src={`${activeDest.videoUrl}?autoplay=1`}
-                  title={`Video de ${activeDest.title}`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="absolute inset-0 h-full w-full"
-                />
-              ) : (
-                <Mp4Player src={activeDest.videoUrl} title={activeDest.title} />
-              )}
+          <div className="relative w-full max-w-5xl px-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="relative aspect-video w-full overflow-hidden border border-border bg-card rounded-lg">
+              <Mp4Player src={activeEntry.videoUrl} title={activeEntry.title} />
             </div>
             <div className="mt-4 text-center">
               <p className="font-serif text-2xl text-foreground">
-                {activeDest.title}
+                {activeEntry.title}
               </p>
               <p className="text-sm tracking-wider uppercase text-primary">
-                {activeDest.subtitle}
+                {activeEntry.subtitle}
               </p>
             </div>
           </div>
@@ -169,9 +218,8 @@ function Mp4Player({ src, title }: { src: string; title: string }) {
 
       {/* Controls overlay */}
       <div className="absolute inset-x-0 bottom-0 flex flex-col gap-0 bg-gradient-to-t from-card/80 to-transparent pt-12 opacity-0 transition-opacity duration-300 group-hover/player:opacity-100">
-        {/* Progress bar */}
         <div
-          className="mx-4 h-1 cursor-pointer bg-border"
+          className="mx-4 h-1 cursor-pointer bg-border rounded-full"
           onClick={handleSeek}
           role="progressbar"
           aria-valuenow={Math.round(progress)}
@@ -179,7 +227,7 @@ function Mp4Player({ src, title }: { src: string; title: string }) {
           aria-valuemax={100}
         >
           <div
-            className="h-full bg-primary transition-[width] duration-100"
+            className="h-full bg-primary rounded-full transition-[width] duration-100"
             style={{ width: `${progress}%` }}
           />
         </div>
